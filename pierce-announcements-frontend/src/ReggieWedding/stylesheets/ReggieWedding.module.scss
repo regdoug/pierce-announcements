@@ -1,0 +1,32 @@
+@import '../../stylesheets/variables-theme.scss';
+
+.event {
+    overflow: scroll;
+    max-height: 0px;
+
+    section {
+        margin: 2em;
+    }
+}
+
+.card {
+    //&.uk-card-body {
+        background-color: rebeccapurple;
+        color: white;
+        border: 1ex solid rebeccapurple;
+
+        h2, h3 {
+            color: goldenrod;
+        }
+    //}
+
+}
+
+.background {
+    @media only screen and (min-width:960px) {
+        background-image: url(../mountain_portrait.jpg);
+        // filtser:none;
+    }
+    background-image: url(../mobile_background.jpg);
+    // filter: url(blur.svg#blur);
+}
