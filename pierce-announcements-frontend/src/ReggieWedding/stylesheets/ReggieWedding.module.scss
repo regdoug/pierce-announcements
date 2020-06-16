@@ -30,3 +30,18 @@
     background-image: url(../mobile_background.jpg);
     // filter: url(blur.svg#blur);
 }
+
+.msgbar {
+    background-color: khaki;
+    color: darken($color: khaki, $amount: 0.7 * lightness(khaki));
+    font-size: smaller;
+    padding: 0.7em 2em;
+
+    span[aria-role='title'] {
+        font-weight: bold;
+    }
+}
+
+.fancytext {
+    width: 100%;
+}

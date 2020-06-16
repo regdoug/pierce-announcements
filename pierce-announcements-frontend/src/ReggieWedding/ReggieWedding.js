@@ -8,21 +8,20 @@ function ReggieWedding() {
   return (
     <div className={`uk-background-cover ${styles.background}`} >
         <article className={styles.event} uk-height-viewport="offset-top: true">
+            <CovidUpdate/>
             <section >
                 <RWCard width="1-2">
-                    <h2>The Wedding of <img style={{maxWidth:"600px"}} src={fancytext} alt="Estefania &amp; Reggie" /></h2>
+                    <h2>The Wedding of <img style={{maxWidth:"600px"}} className={styles.fancytext} src={fancytext} alt="Estefania &amp; Reggie" /></h2>
                     <div className="uk-visible@m">
                         <h3>To Take Place</h3>
                         <p>June 20th, 2020 at eleven o'clock in the morning</p>
                         <h3>The Wedding Ceremony</h3>
                         <p>Will be held at Holy Infancy Catholic Church, 312 E 4th St, Bethlehem, PA</p>
-                        <h3>Reception To Follow</h3>
-                        <p>Two o'clock in the afternoon at Our Lady of Perpetual Help Church, 3219 Santee Rd, Bethlehem, PA</p>
                     </div>
                 </RWCard>
             </section>
             <section className="uk-hidden@m">
-                <img  className="uk-margin-auto" style={{maxWidth:"600px",display:"block"}} src={portrait_mobile} alt="Estefania and Reggie by lake and mountains" />
+                <img  className="uk-margin-auto" style={{width:"90%",display:"block"}} src={portrait_mobile} alt="Estefania and Reggie by lake and mountains" />
             </section>
             <section>
                 <RWCard>
@@ -43,27 +42,11 @@ function ReggieWedding() {
                             <RWMap location="Holy+Infancy+Church+Bethlehem" />
                         </div>
                     </div>
-                    <h2>Reception Details</h2>
-                    <div className="uk-child-width-expand@s uk-child-width-1-2@m" ukGrid>
-                        <div>
-                            <p>
-                                The Marian Inn at Our Lady of Perpetual Help<br />
-                                3219 Santee Rd<br />
-                                Bethlehem, PA<br />
-                            </p>
-                            <p>The reception will be from two o'clock in the afternoon until seven o'clock in the evening</p>
-                        </div>
-                        <div className="uk-height-large">
-                            {/*possible improvement: use google-map-react instead of homebrew component*/}
-                            <RWMap location="Our+Lady+of+Perpetual+Help+Bethlehem" />
-                        </div>
-                    </div>
                 </RWCard>
             </section>
             <section>
                 <RWCard>
-                    <h2>RSVP</h2>
-                    <p>Online RSVP form coming soon!</p>
+                    <h2>Lodging</h2>
                     <p>A block of rooms has been set aside for the Estefania Perdomo &amp; Reggie Pierce Wedding
                         at Comfort Suites Bethlehem, 120 West 3rd Street, Bethlehem, PA 18015</p>
                     <p>You can visit the hotel website <a href="#">here</a>, but please call if you want to reserve a room.</p>
@@ -75,6 +58,13 @@ function ReggieWedding() {
         </article>
     </div>
   );
+}
+
+function CovidUpdate(props) {
+    return (
+        <div className={styles.msgbar}><span aria-role="title">COVID-19 Update:</span> The originally planned reception at The Marian Inn will not be happening this year.
+        Estefania and Reggie are working to set a date for a 1 year anniversary celebration. There will be a live stream of the wedding ceremony here for all those who cannot attend.</div>
+    )
 }
 
 function RWCard(props) {
