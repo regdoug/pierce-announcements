@@ -1,0 +1,6 @@
+name = "pierce-announcements-api"
+type = "webpack"
+account_id = "b76b3ac62ebcdb02a994869e70465886"
+workers_dev = true
+route = ""
+zone_id = "6806d90ab920762d7e66db5deb3569ad"
