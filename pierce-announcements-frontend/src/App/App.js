@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './favicon_512.png';
 import styles from './stylesheets/App.module.scss';
 
 class App extends React.Component {
