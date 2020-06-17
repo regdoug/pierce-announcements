@@ -1,4 +1,5 @@
 import React from 'react';
+import { TwitchEmbed, TwitchChat, TwitchClip, TwitchPlayer } from 'react-twitch-embed';
 import portrait_mobile from './mountain_portrait_mobile.jpg';
 import fancytext from './StefReggGoldRochester.png'
 import styles from './stylesheets/ReggieWedding.module.scss';
@@ -10,16 +11,17 @@ function ReggieWedding() {
         <article className={styles.event} uk-height-viewport="offset-top: true">
             <CovidUpdate/>
             <section >
-                <RWPlayer />
+                <TwitchEmbed channel="2pierce" withChat={false} >
+                </TwitchEmbed>
             </section>
             <section className="uk-hidden@m">
                 <img  className="uk-margin-auto" style={{width:"90%",display:"block"}} src={portrait_mobile} alt="Estefania and Reggie by lake and mountains" />
             </section>
             <section>
                 <RWCard>
-                    <div className="uk-child-width-expand@s uk-child-width-1-2@m" uk-grid>
+                    <div className="uk-child-width-expand@s uk-child-width-1-2@m" uk-grid="yes">
                         <h2>The Wedding of <img className={styles.fancytext} src={fancytext} alt="Estefania &amp; Reggie" /></h2>
-                        <div>
+                        <div style={{paddingTop:"2rem"}}>
                             <p>will take place on Saturday, June 20, 2020</p>
                             <p>
                                 Holy Infancy Church<br />
@@ -83,15 +85,6 @@ function RWMap(props) {
             frameBorder="0" style={{border:0}}
             src={`https://www.google.com/maps/embed/v1/search?key=${api_key}&q=${props.location}`} allowFullScreen>
         </iframe>
-    );
-}
-
-function RWPlayer(props) {
-    var widthClass = props.width ? `uk-width-${props.width}@m` : '';
-    return (
-      <div className={`uk-card uk-card-default uk-card-body uk-text-center ${widthClass} ${styles.player}`}>
-        {props.children}
-      </div>
     );
 }
 
