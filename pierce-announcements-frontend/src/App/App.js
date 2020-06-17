@@ -8,6 +8,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // schedule header to change to "Wedding of Estefania & Reggie"
+    // schedule header to disappear
   }
 
   componentWillUnmount() {
