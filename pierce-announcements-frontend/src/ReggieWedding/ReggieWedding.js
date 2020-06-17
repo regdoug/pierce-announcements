@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import { TwitchEmbed, TwitchChat, TwitchClip, TwitchPlayer } from 'react-twitch-embed';
 import portrait_mobile from './mountain_portrait_mobile.jpg';
 import fancytext from './StefReggGoldRochester.png'
@@ -6,12 +6,32 @@ import styles from './stylesheets/ReggieWedding.module.scss';
 // var classNames = require('classnames');
 
 function ReggieWedding() {
+  const [playerWidth, setPlayerWidth] = useState(300);
+  const [playerHeight, setPlayerHeight] = useState(300);
+  const playerContainerRef = useRef(null);
+
+  let resizePlayer = function() {
+    if(playerContainerRef.current.clientWidth > 960) {
+        setPlayerWidth(0.7 * playerContainerRef.current.clientWidth);
+    } else {
+        setPlayerWidth(playerContainerRef.current.clientWidth);
+    }
+    setPlayerHeight(9 * playerWidth / 16.0);
+  };
+
+  // if you don't use the timeout, the Twitch script won't have loaded by the time the effect fires
+  useEffect(() => {
+    setTimeout(resizePlayer, 1000);
+  });
+
+  window.addEventListener('resize', resizePlayer);
+
   return (
     <div className={`uk-background-cover ${styles.background}`} >
         <article className={styles.event} uk-height-viewport="offset-top: true">
             <CovidUpdate/>
-            <section >
-                <TwitchEmbed channel="2pierce" withChat={false} >
+            <section ref={playerContainerRef}>
+                <TwitchEmbed channel="2pierce" withChat={false} width={playerWidth} height={playerHeight}>
                 </TwitchEmbed>
             </section>
             <section className="uk-hidden@m">
@@ -53,7 +73,10 @@ function ReggieWedding() {
                 <RWCard>
                     <h2>Gifts</h2>
                     <p>Just your presense at the wedding will be gift enough for us.</p>
-                    <p className="uk-text-meta">However, if you want to contribute to our honeymoon 🛫 or home renovation 🔨🏠, we accept cash and Lowe's gift cards 😉</p>
+                    <p className="uk-text-meta">However, if you want to contribute to our honeymoon 
+                    <span aria-role="img" aria-description="airplane">🛫</span> or home renovation 
+                    <span aria-role="img" aria-description="hammer">🔨</span><span aria-role="img" aria-description="house">🏠</span>, 
+                    we accept cash and Lowe's gift cards <span aria-role="img" aria-description="wink">😉</span></p>
                 </RWCard>
             </section>
         </article>
@@ -63,7 +86,7 @@ function ReggieWedding() {
 
 function CovidUpdate(props) {
     return (
-        <div className={styles.msgbar}><span aria-role="title">Ceremony Livestream:</span> The live stream of the wedding will be shown here, beginning at 10:50am on Saturday, June 20.</div>
+        <div className={styles.msgbar}><span aria-role="header" aria-level={2}>Ceremony Livestream:</span> The live stream of the wedding will be shown here, beginning at 10:50am on Saturday, June 20.</div>
     )
 }
 
