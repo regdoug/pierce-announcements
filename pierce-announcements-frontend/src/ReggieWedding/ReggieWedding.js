@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import { TwitchEmbed, TwitchChat, TwitchClip, TwitchPlayer } from 'react-twitch-embed';
+import ReactPlayer from 'react-player/twitch';
 import portrait_mobile from './mountain_portrait_mobile.jpg';
 import fancytext from './StefReggGoldRochester.png'
 import styles from './stylesheets/ReggieWedding.module.scss';
@@ -19,10 +19,7 @@ function ReggieWedding() {
     setPlayerHeight(9 * playerWidth / 16.0);
   };
 
-  // if you don't use the timeout, the Twitch script won't have loaded by the time the effect fires
-  useEffect(() => {
-    setTimeout(resizePlayer, 1000);
-  });
+  useEffect(resizePlayer);
 
   window.addEventListener('resize', resizePlayer);
 
@@ -31,8 +28,8 @@ function ReggieWedding() {
         <article className={styles.event} uk-height-viewport="offset-top: true">
             <CovidUpdate/>
             <section ref={playerContainerRef}>
-                <TwitchEmbed channel="2pierce" withChat={false} width={playerWidth} height={playerHeight}>
-                </TwitchEmbed>
+                <ReactPlayer url="twitch.tv/2pierce" config={{channel:"2pierce", withChat:false}} width={playerWidth} height={playerHeight}>
+                </ReactPlayer>
             </section>
             <section className="uk-hidden@m">
                 <img  className="uk-margin-auto" style={{width:"90%",display:"block"}} src={portrait_mobile} alt="Estefania and Reggie by lake and mountains" />
